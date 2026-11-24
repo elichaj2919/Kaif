@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Health : MonoBehaviour
 {
@@ -6,11 +7,20 @@ public class Health : MonoBehaviour
     private float hp = 100f;
     [SerializeField]
     private UpdateUI updateUI;
-
+    
+    
+    
     private bool isDead;
+
+    private Animator anim;
+    private PlayerInput playerInput;
+
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
+        playerInput = GetComponent<PlayerInput>();
+        
         updateUI.UpdateHealth(hp);
     }
 
@@ -25,9 +35,11 @@ public class Health : MonoBehaviour
 
         if (hp <= 0)
         {
-            isDead=true;
+            isDead = true;
             hp = 0;
-
+            anim.SetBool(name: "Death", isDead);
+            playerInput.enabled = false;
+            updateUI.ShowGameOverUI();
 
             print("Потрачено");
         }

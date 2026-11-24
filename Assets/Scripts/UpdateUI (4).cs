@@ -9,6 +9,9 @@ public class UpdateUI : MonoBehaviour
     [SerializeField]
     private Slider healthSlider;
 
+    [SerializeField]
+    private GameObject gameOverUI;
+
     public void UpdateCoinText(int coins)
     {
         coinCountText.text = "Coins: " + coins;
@@ -20,5 +23,8 @@ public class UpdateUI : MonoBehaviour
     
     
     }
-
+    public void ShowGameOverUI()
+    {
+        gameOverUI.SetActive(true);
+    }
 }
